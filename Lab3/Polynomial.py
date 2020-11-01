@@ -62,3 +62,5 @@ class Polynomial:
             return True
 
 
+#Dla liczb zespolonych i macierzy również by działało, o ile macierze byłyby kwadratowe i ustalonego rozmiaru.
+
