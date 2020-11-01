@@ -62,5 +62,6 @@ class Polynomial:
             return True
 
 
+#defaultdict sprawdziłby się tutaj dobrze, domyślna wartość mogłaby wynosić na przykład 0.
 #Dla liczb zespolonych i macierzy również by działało, o ile macierze byłyby kwadratowe i ustalonego rozmiaru.
 
