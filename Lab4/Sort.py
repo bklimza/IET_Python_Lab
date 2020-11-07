@@ -1,24 +1,24 @@
-def insertion_sort(arr):
-    for i in range(1, len(arr)):
-        currentValue = arr[i]
+def insertion_sort(array):
+    for i in range(1, len(array)):
+        currentValue = array[i]
         currentPosition = i
-        while currentPosition > 0 and arr[currentPosition - 1] > currentValue:
-            arr[currentPosition] = arr[currentPosition - 1]
+        while currentPosition > 0 and array[currentPosition - 1] > currentValue:
+            array[currentPosition] = array[currentPosition - 1]
             currentPosition = currentPosition - 1
-        arr[currentPosition] = currentValue
+        array[currentPosition] = currentValue
 
 
-def selection_sort(arr):
-    n = len(arr)
+def selection_sort(array):
+    n = len(array)
     for i in range(n):
         minimum = i
         for j in range(i + 1, n):
-            if (arr[j] < arr[minimum]):
+            if (array[j] < array[minimum]):
                 minimum = j
-        temp = arr[i]
-        arr[i] = arr[minimum]
-        arr[minimum] = temp
-    return arr
+        temp = array[i]
+        array[i] = array[minimum]
+        array[minimum] = temp
+    return array
 
 
 L = [4, 3, 2, 1]
