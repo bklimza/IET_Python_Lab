@@ -1,10 +1,3 @@
-def calculate_gcd(a, b):
-    if b > 0:
-        return calculate_gcd(b, a % b)
-    else:
-        return a
-
-
 def check_numbers(number):
     float_number = float(number)
     int_number = int(number)
@@ -14,6 +7,13 @@ def check_numbers(number):
         if int_number < 1:
             raise ValueError('Number isn\'t a positive integer')
         return int_number
+
+
+def calculate_gcd(a, b):
+    if b > 0:
+        return calculate_gcd(b, a % b)
+    else:
+        return a
 
 
 def validate_entities(numbers, validation, expected_len=None):
