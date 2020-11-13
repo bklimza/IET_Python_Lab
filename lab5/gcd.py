@@ -27,7 +27,7 @@ def get_valid_input(message_to_user, validation, expected_len=None, sep=' '):
     return validate_entities(input(message_to_user).split(sep), validation, expected_len)
 
 
-def handle_gcd():
+def execute_gcd():
     while True:
         try:
             a, b = get_valid_input('Type numbers separated by space: ', check_numbers, 2, ' ')
@@ -36,4 +36,4 @@ def handle_gcd():
             print(error)
 
 
-print(handle_gcd())
+print(execute_gcd())
