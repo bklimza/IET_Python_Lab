@@ -4,7 +4,7 @@ class LogicalAutomaton:
         self.state = 'q_0'
 
     def reset(self):
-        self.__init__()
+        self.__init__() # lepiej by było w drugą stronę - niech __init__ wywoła reset
 
     def next_step_q_0(self, sign):
         if sign == '~':
@@ -26,7 +26,7 @@ class LogicalAutomaton:
 
     def handle_expression(self, expression):
         expression = expression.replace(" ", "")
-        for sign in expression:
+        for sign in expression: # raczej character niż sign
             if self.state == 'q_0':
                 self.next_step_q_0(sign)
             elif self.bracket_counter < 0 or self.state == 'q_n':
@@ -42,7 +42,7 @@ class LogicalAutomaton:
 def check_expression(expresion):
     automaton = LogicalAutomaton()
     is_correct = automaton.handle_expression(expresion)
-    automaton.reset()
+    automaton.reset()   # po co, skoro za chwilę tego obiektu nie będzie?
     return is_correct
 
 
