@@ -35,8 +35,7 @@ class Board:
         for figure in self.figures.values():
             print(figure)
 
-    @staticmethod
-    def help():
+    def help(self):
         print('add <figure> <name> <size>\n\
         remove <name>\n\
         move <name> <vector>\n\
