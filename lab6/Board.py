@@ -56,7 +56,7 @@ class Board:
     board_commands = {"help": help, "quit": quit, "add": add, "remove": remove}
     figure_commands = {"move", "scale", "rotate", "set_border_colour", "set_background_colour"}
 
-    def make_figure_command(self, function, name, parameters):
+    def make_figure_command(self, function, name, parameters):  # myląca nazwa funkcji
         if name in self.figures.keys():
             if function == "scale":
                 self.figures[name].scale(*parameters)

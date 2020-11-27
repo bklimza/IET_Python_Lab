@@ -1,13 +1,13 @@
 from Vector import *
 
-def check_numerical(size):
+def check_numerical(size):  # patrząc na działanie, to raczej convert niż check
     for i, v in enumerate(size):
         size[i] = float(v)
     return size
 
 
 class Figure:
-    colours = {'black', 'white', 'red', 'green', 'blue', 'cyan', 'magenta', 'yellow'}
+    colours = {'black', 'white', 'red', 'green', 'blue', 'cyan', 'magenta', 'yellow'}   # nazwy stałych piszemy wielkimi literami
 
     def __init__(self, *size):
         self.center = Vector(0, 0)
