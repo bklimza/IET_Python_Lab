@@ -1,6 +1,10 @@
 def solve_quadratic_equation(a, b, c):
     if a == b == c == 0:
         raise ValueError("Every coefficient equals zero")
+    if a == 0:
+        return {-c / b}  # linear equation
+    if a == b == 0:
+        raise ZeroDivisionError
     delta = b ** 2 - 4 * a * c
     if delta == 0:
         return {-b / (2 * a)}
