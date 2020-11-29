@@ -15,7 +15,7 @@ class FindStraightLineEquationTest(unittest.TestCase):
         self.assertRaises(TypeError, find_straight_line_equation, ("str", 0), (0, "str"))
 
     def test_wrong_dimension_input(self):
-        self.assertRaises(TypeError, find_straight_line_equation, (1), (1, 2))
+        self.assertRaises(TypeError, find_straight_line_equation, [1], (1, 2))
         self.assertRaises(TypeError, find_straight_line_equation, (4, 6, 8, 10), (1, 2))
 
 
