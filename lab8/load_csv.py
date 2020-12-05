@@ -30,7 +30,7 @@ def normalize_column(number, data_matrix):
             i += 1
 
 
-def normalize_rows(data_matrix):  # ?
+def normalize_rows(data_matrix): 
     for i in range(number_of_columns(data_matrix)):
         normalize_column(i, data_matrix)
 
