@@ -35,11 +35,3 @@ class Perceptron:
             print("Epoch: {} \n weights: {} \n number of errors {} \n".format(
                 e, self.weights, errors_counter))
 
-
-a, b = load_csv.load_data("sample1.csv", ";", -1)
-c, d, e, f = load_csv.divide_data_to_train_and_test(a, b, 30)
-
-perceptron = Perceptron(0.1, 1000)
-perceptron.train(c, d)
-
-print(perceptron.predict(np.array([[20, 26, -2, 23, 14, -11, 14, 22, 1]])))
