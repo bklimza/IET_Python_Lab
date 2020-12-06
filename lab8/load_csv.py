@@ -23,16 +23,25 @@ def normalize_column(number, data_matrix):
     col_min = data_matrix[:, number].min()
     col_max = data_matrix[:, number].max()
 
-    if(col_max - col_min) != 0:
-        i = 0
-        for v in data_matrix[:, number]:
-            data_matrix[:, number][i] = (v - col_min) / (col_max - col_min)
-            i += 1
+    i = 0
+    for v in data_matrix[:, number]:
+        data_matrix[:, number][i] = (v - col_min) / (col_max - col_min)
+        i += 1
+
+
+def normalize_row(x):
+    row_min = x.min()
+    row_max = x.max()
+
+    i = 0
+    for el in x:
+        x[i] = (el - row_min) / (row_max - row_min)
+        i += 1
 
 
 def normalize_all_rows(data_matrix):
-    for i in range(number_of_columns(data_matrix)):
-        normalize_column(i, data_matrix)
+    for x in data_matrix:
+        normalize_row(x)
 
 
 def center_column(number, data_matrix):
@@ -42,11 +51,6 @@ def center_column(number, data_matrix):
     for _ in data_matrix[:, number]:
         data_matrix[:, number][i] -= col_mean
         i += 1
-
-
-def center_all_rows(data_matrix):
-    for i in range(number_of_columns(data_matrix)):
-        center_column(i, data_matrix)
 
 
 def divide_data_to_train_and_test(data_matrix, labels,  how_many_rows_to_train):
