@@ -30,7 +30,7 @@ def normalize_column(number, data_matrix):
             i += 1
 
 
-def normalize_rows(data_matrix): 
+def normalize_all_rows(data_matrix):
     for i in range(number_of_columns(data_matrix)):
         normalize_column(i, data_matrix)
 
@@ -42,6 +42,11 @@ def center_column(number, data_matrix):
     for _ in data_matrix[:, number]:
         data_matrix[:, number][i] -= col_mean
         i += 1
+
+
+def center_all_rows(data_matrix):
+    for i in range(number_of_columns(data_matrix)):
+        center_column(i, data_matrix)
 
 
 def divide_data_to_train_and_test(data_matrix, labels,  how_many_rows_to_train):
