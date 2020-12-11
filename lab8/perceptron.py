@@ -2,21 +2,21 @@ import numpy as np
 import load_csv
 
 
-def create_new_matrix(x):
+def create_new_matrix(x):   # nieczytelna nazwa
     ones = np.ones((x.shape[0], 1))
     x_1 = np.append(x.copy(), ones, axis=1)
     return x_1
 
 
 class Perceptron:
-    def __init__(self, eta, epochs):
+    def __init__(self, eta, epochs):    # warto dodawać wartości domyślne
         self.eta = eta
         self.epochs = epochs
         self.error_list = []
         self.weights = None
 
     def predict(self, vector):
-        total_stimulation = np.dot(vector, self.weights)
+        total_stimulation = np.dot(vector, self.weights)    # a gdzie bias?
         if total_stimulation > 0:
             y_predict = 1
         else:
@@ -32,12 +32,12 @@ class Perceptron:
             errors_counter = 0
             for x, y_target in zip(x_1, y):
                 y_predict = self.predict(x)
-                delta_w = self.eta * (y_target - y_predict) * x
+                delta_w = self.eta * (y_target - y_predict) * x # nie opłaciłoby się tego wciągnąć do if'a dwie linie dalej?
                 self.weights += delta_w
                 if y_target != y_predict:
                     errors_counter += 1
                 else:
-                    errors_counter = 0
+                    errors_counter = 0  # naprawdę?
             self.error_list.append(errors_counter)
             print("Epoch: {} \n weights: {} \n number of errors {} \n".format(
                 e, self.weights, errors_counter))

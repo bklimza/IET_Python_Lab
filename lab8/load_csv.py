@@ -2,7 +2,7 @@ import csv
 import numpy as np
 
 
-def load_data(path, delimit, label_col):
+def load_data(path, delimit, label_col):    # dobrze przyjąć jakieś wartości domyślne
     with open(path, 'r', encoding='utf-8') as csvfile:
         csvreader = csv.reader(csvfile, delimiter=delimit)
         data_matrix = np.asarray([row for row in csvreader], dtype=float)
@@ -19,7 +19,7 @@ def number_of_rows(data_matrix):
     return data_matrix.shape[0]
 
 
-def normalize_column(number, data_matrix):
+def normalize_column(number, data_matrix):  # ma Pan sporo funkcji, które przyjmują tylko data_matrix, więc dobrze by było konsekwentnie przyjmować to jako pierwszy parametr
     col_min = data_matrix[:, number].min()
     col_max = data_matrix[:, number].max()
 
@@ -35,16 +35,16 @@ def normalize_row(x):
 
     i = 0
     for el in x:
-        x[i] = (el - row_min) / (row_max - row_min)
+        x[i] = (el - row_min) / (row_max - row_min) # raczej dzielimy przez długość (normę) wiersza
         i += 1
 
 
 def normalize_all_rows(data_matrix):
     for x in data_matrix:
-        normalize_row(x)
+        normalize_row(x)    # numpy wykonuje operacje element po elemencie nieporównywalnie wydajniej niż działa taka pętla
 
 
-def center_column(number, data_matrix):
+def center_column(number, data_matrix): # parametr o nazwie "liczba" niewiele mówi
     col_mean = data_matrix[:, number].mean()
 
     i = 0
