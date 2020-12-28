@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plant_1 = pd.read_csv('Plant_1_Generation_Data.csv', index_col=[2, 0], parse_dates=True, dayfirst=True)
+plant_1 = pd.read_csv('Plant_1_Generation_Data.csv', index_col=[2, 0], parse_dates=True, dayfirst=True) # nie powinno się pisać kodu na najwyższym poziomie modułu
 plant_2 = pd.read_csv('Plant_2_Generation_Data.csv', index_col=[2, 0], parse_dates=True, dayfirst=True)
 df = pd.concat([plant_1, plant_2])
 
@@ -19,8 +19,8 @@ def calculate_ratio(generator):
 
     dict_of_frequency = {'<75%': 0, '75-85%': 0, '85-95%': 0, '95-105%': 0, '105-115%': 0, '115-125%': 0, '>125%': 0}
     end_of_day_generator = new_df[(new_df['DATE_TIME'].str.contains('23:00')) & (new_df['SOURCE_KEY'] == generator)].loc[:,
-                             ['DATE_TIME', 'DAILY_YIELD']]
-    for date in end_of_day_generator['DATE_TIME']:
+                             ['DATE_TIME', 'DAILY_YIELD']]  # dla zasady dzień się kończy 23:45
+    for date in end_of_day_generator['DATE_TIME']: # pandas to zrobi szybciej i wygodniej niż pętla
         ratio = float(
             end_of_day_generator[end_of_day_generator['DATE_TIME'] == date]['DAILY_YIELD'] / mean.loc[date])
         if ratio < 0.75:
@@ -46,7 +46,7 @@ plt.xlabel('TIME', fontsize=6)
 plt.ylabel('AC POWER', fontsize=6)
 plt.plot(df.loc[generator_1]['AC_POWER']['2020-05-15 00:00:00':'2020-05-22 00:00:00'], 'dodgerblue', linewidth=2,
          label=generator_1)
-plt.plot(df.loc[generator_2]['AC_POWER']['2020-05-15 00:00:00':'2020-05-22 00:00:00'], 'green', linewidth=2,
+plt.plot(df.loc[generator_2]['AC_POWER']['2020-05-15 00:00:00':'2020-05-22 00:00:00'], 'green', linewidth=2,    # DRY
          label=generator_2)
 plt.plot(df.loc['3PZuoBAID5Wc2HD']['AC_POWER']['2020-05-15 00:00:00':'2020-05-22 00:00:00'], 'black', linewidth=1,
          label='3PZuoBAID5Wc2HD')
