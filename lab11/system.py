@@ -28,7 +28,7 @@ def show_reader_menu(current_reader):
     while True:
         x = input('1. Przeszukaj katalog\n2. Wypożycz książkę\n3. Zakończ\n')
         if x == '1':
-            title = input('Podaj tytuł książki: ')
+            title = input('Podaj tytuł lub autora książki: ')
             current_reader.search_catalog(title)
             break
         elif x == '2':
