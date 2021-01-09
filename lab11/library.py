@@ -60,15 +60,12 @@ class Reader:
     def __str__(self):
         return self.login + ' - Reader'
 
-    def search_catalog(self, title):
+    def search_catalog(self, phrase):
         global library_dict
         for k, v in library_dict.items():
-            if v['title'] == title:
+            if (v['title'] == phrase) or (v['author'] == phrase):
                 print('Znalezione książki:\n')
                 print(k, v, '\n')
-            else:
-                print('Nie ma takiej książki\n')
-                break
 
     def lend_book(self, book_id):
         global library_dict
