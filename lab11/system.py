@@ -69,7 +69,7 @@ def show_worker_menu(current_worker):
             print('Błędnie wybrana opcja, spróbuj jeszcze raz')
 
 
-def get_login_and_show_menu():
+def handle_user():
     while True:
         given_login = get_login()
         validate_login(given_login)
@@ -101,5 +101,5 @@ def update_json_files():
 if __name__ == '__main__':
     while True:
         show_initial_menu()
-        get_login_and_show_menu()
+        handle_user()
         update_json_files()
