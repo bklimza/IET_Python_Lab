@@ -30,8 +30,11 @@ class Worker:
 
     def remove_book(self, book_id):
         global library_dict
-        del library_dict[book_id]
-        print('Książka została usunięta\n')
+        if book_id in library_dict.keys():
+            del library_dict[book_id]
+            print('Książka została usunięta\n')
+        else:
+            print('Nie ma takiej książki')
 
     def add_reader(self, login, who='Reader'):
         global users_dict
