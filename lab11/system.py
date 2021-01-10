@@ -76,7 +76,7 @@ def get_login_and_show_menu():
                 current_user = Reader(given_login)
             elif users_dict.copy()[given_login]['who'] == 'Worker':
                 current_user = Worker(given_login)
-            for k, v in users_dict.items():
+            for k, v in users_dict.copy().items():
                 if k == given_login:
                     if v['who'] == 'Worker':
                         show_worker_menu(current_user)
