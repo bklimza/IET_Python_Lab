@@ -43,7 +43,7 @@ def show_reader_menu(current_reader):
 
 def show_worker_menu(current_worker):
     while True:
-        x = input('1. Dodaj książkę\n2. Usuń książkę\n3. Dodaj czytelnika\n4. Przyjmij zwrot\n5. Zakończ\n')
+        x = input('1. Dodaj książkę\n2. Usuń książkę\n3. Dodaj czytelnika\n4. Przyjmij zwrot\n5. Wyloguj się\n')
         if x == '1':
             new_book = input('Podaj tytuł, autora, rok wydania i identyfikator (oddzielone przecinkami): ').split()
             current_worker.add_book(new_book[0], new_book[1], int(new_book[2]), new_book[3])
@@ -74,9 +74,9 @@ def get_login_and_show_menu():
         if validate_login(given_login):
             if users_dict[given_login]['who'] == 'Reader':
                 current_user = Reader(given_login)
-            elif users_dict[given_login]['who'] == 'Worker':
+            elif users_dict.copy()[given_login]['who'] == 'Worker':
                 current_user = Worker(given_login)
-            for k, v in users_dict.copy().items():
+            for k, v in users_dict.items():
                 if k == given_login:
                     if v['who'] == 'Worker':
                         show_worker_menu(current_user)
