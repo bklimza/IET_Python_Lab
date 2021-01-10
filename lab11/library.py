@@ -62,9 +62,9 @@ class Reader:
 
     def search_catalog(self, phrase):
         global library_dict
+        print('Znalezione książki:\n')
         for k, v in library_dict.items():
             if (v['title'] == phrase) or (v['author'] == phrase):
-                print('Znalezione książki:\n')
                 print(k, v, '\n')
 
     def lend_book(self, book_id):
