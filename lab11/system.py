@@ -43,7 +43,7 @@ def show_reader_menu(current_reader):
 
 def show_worker_menu(current_worker):
     while True:
-        x = input('1. Dodaj książkę\n2. Usuń książkę\n3. Dodaj czytelnika\n4. Przyjmij zwrot\n5. Wyloguj się\n')
+        x = input('1. Dodaj książkę\n2. Usuń książkę\n3. Dodaj czytelnika\n4. Przyjmij zwrot\n5. Zakończ\n')
         if x == '1':
             new_book = input('Podaj tytuł, autora, rok wydania i identyfikator (oddzielone przecinkami): ').split()
             current_worker.add_book(new_book[0], new_book[1], int(new_book[2]), new_book[3])
