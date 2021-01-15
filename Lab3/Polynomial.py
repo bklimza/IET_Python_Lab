@@ -27,36 +27,36 @@ class Polynomial:
 
     def __add__(self, other):
         if isinstance(other, (int, float)):
-            coefficients = self.coefficients
-            coefficients[0] += other
-            return Polynomial(coefficients)
+            self.coefficients[0] += other
+            return Polynomial(self.coefficients)
         else:
-            coefficients = []
+            added = []
             for c1, c2 in zip_longest(self.coefficients, other.coefficients):
-                coefficients.append(correct_value(c1) + correct_value(c2))
-            return Polynomial(coefficients)
+                added.append(correct_value(c1) + correct_value(c2))
+            return Polynomial(added)
 
     def __sub__(self, other):
         if isinstance(other, (int, float)):
-            coefficients = self.coefficients
-            coefficients[0] -= other
-            return Polynomial(coefficients)
+            self.coefficients[0] -= other
+            return Polynomial(self.coefficients)
         else:
-            coefficients = []
+            subtracted = []
             for c1, c2 in zip_longest(self.coefficients, other.coefficients):
-                coefficients.append(correct_value(c1) - correct_value(c2))
-            return Polynomial(coefficients)
+                subtracted.append(correct_value(c1) - correct_value(c2))
+            return Polynomial(subtracted)
 
     def __mul__(self, other):
         if isinstance(other, (int, float)):
-            coefficients = [other * scalar for scalar in self.coefficients]
-            return Polynomial(coefficients)
+            multiplied = []
+            for scalar in self.coefficients:
+                multiplied.append(scalar * other)
+            return Polynomial(multiplied)
         else:
-            result = Polynomial([0])
+            multiplied = Polynomial([0])
             for index in range(len(other.coefficients)):
-                result += Polynomial([0] * index + [other.coefficients[index] * coefficient
+                multiplied += Polynomial([0] * index + [other.coefficients[index] * coefficient
                                                     for coefficient in self.coefficients])
-            return result
+            return multiplied
 
     def __iadd__(self, other):
         added = self + other
@@ -67,8 +67,8 @@ class Polynomial:
         return subtracted
 
     def __imul__(self, other):
-        multiplicated = self * other
-        return multiplicated
+        multiplied = self * other
+        return multiplied
 
     def calculate_value(self, x):
         result = 0
@@ -79,7 +79,3 @@ class Polynomial:
 
 # defaultdict sprawdziłby się tutaj dobrze, domyślna wartość mogłaby wynosić na przykład 0.
 # Dla liczb zespolonych i macierzy również by działało, o ile macierze byłyby kwadratowe i ustalonego rozmiaru.
-
-
-p = Polynomial([1, 2, 3])
-print(p)
