@@ -13,8 +13,11 @@ class Polynomial:
         self.coefficients = coefficients
 
     def __str__(self):
-        return ' + '.join([str(self.coefficients[index]) + '*x^' + str(index) for index in
-                           range(len(self.coefficients)) if self.coefficients[index] != 0])
+        str_result = ''
+        for index in range(len(self.coefficients)):
+            if self.coefficients[index] != 0:
+                str_result += ' + ' + str(self.coefficients[index]) + '*x^' + str(index)
+        return str_result
 
     def __bool__(self):
         if not any(self.coefficients):
@@ -76,3 +79,7 @@ class Polynomial:
 
 # defaultdict sprawdziłby się tutaj dobrze, domyślna wartość mogłaby wynosić na przykład 0.
 # Dla liczb zespolonych i macierzy również by działało, o ile macierze byłyby kwadratowe i ustalonego rozmiaru.
+
+
+p = Polynomial([1, 2, 3])
+print(p)
