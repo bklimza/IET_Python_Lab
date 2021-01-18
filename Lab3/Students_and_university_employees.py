@@ -8,29 +8,33 @@ class Individual:
     def send_message(self, text, sender):
         self.inbox.append((text, sender))
 
+    def __str__(self):
+        return self.email + ' ' + self.name + ' ' + self.surname
+
 
 class Student(Individual):
-    def __init__(self, index_number, email, name, surname, grades=None):
-        self.index_number = index_number
+    def __init__(self, id_number, email, name, surname, owned_grades=None):
+        if owned_grades is None:
+            self.owned_grades = dict()
+        self.id_number = id_number
         Individual.__init__(self, email, name, surname)
-        if grades is None:
-            self.grades = dict()
-        else:
-            self.grades = grades
 
     def __str__(self):
-        return self.name + ' ' + self.surname + ' ' + self.email + ' ' + str(self.index_number) + ' ' + str(self.grades)
+        return Individual.__str__(self) + ' ' + str(self.owned_grades) + ' ' + str(self.id_number)
 
     def add_new_grade(self, subject, grade: float):
-        if (subject not in self.grades.keys()) or (grade < 2.0) or (grade > 5.0):
+        if (subject not in self.owned_grades.keys()) or (grade < 2.0) or (grade > 5.0):
             raise ValueError
-        self.grades[subject] = grade
+        self.owned_grades[subject] = grade
 
 
 class UniversityEmployee(Individual):
     def __init__(self, email, name, surname, room_number):
         Individual.__init__(self, email, name, surname)
         self.room_number = room_number
+
+    def __str__(self):
+        return Individual.__str__(self) + ' ' + str(self.room_number)
 
 
 class ResearchEmployee(UniversityEmployee):
@@ -39,8 +43,7 @@ class ResearchEmployee(UniversityEmployee):
         self.publications_list = publications_list
 
     def __str__(self):
-        return self.name + ' ' + self.surname + ' ' + self.email + ' ' + self.room_number + ' ' \
-               + str(self.publications_list)
+        return UniversityEmployee.__str__(self) + ' ' + str(self.publications_list)
 
     def add_new_publication(self, title):
         self.publications_list.append(title)
@@ -53,8 +56,7 @@ class TeachingEmployee(UniversityEmployee):
         self.subjects_list = subjects_list
 
     def __str__(self):
-        return self.name + ' ' + self.surname + ' ' + self.email + ' ' + self.room_number + ' ' \
-            + self.consultation_time + ' ' + str(self.subjects_list)
+        return UniversityEmployee.__str__(self) + ' ' + self.consultation_time + ' ' + str(self.subjects_list)
 
 
 class TeachingAndResearchEmployee(TeachingEmployee, ResearchEmployee):
@@ -63,5 +65,4 @@ class TeachingAndResearchEmployee(TeachingEmployee, ResearchEmployee):
         ResearchEmployee.__init__(self, email, name, surname, room_number, publications_list)
 
     def __str__(self):
-        return self.name + ' ' + self.surname + ' ' + self.email + ' ' + self.room_number + ' ' \
-            + self.consultation_time + ' ' + str(self.subjects_list) + ' ' + str(self.publications_list)
+        return ResearchEmployee.__str__(self) + ' ' + str(self.consultation_time) + ' ' + str(self.subjects_list)
