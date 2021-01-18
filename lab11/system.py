@@ -3,7 +3,7 @@ import sys
 
 
 def validate_login(given_login):
-    for k in users_dict.keys():
+    for k in users_dict.keys(): # return given_login in users_dict
         if k == given_login:
             return True
 
@@ -38,7 +38,7 @@ def show_reader_menu(current_reader):
         elif x == '3':
             sys.exit(0)
         else:
-            print('Błędnie wybrana opcja, spróbuj jeszcze raz')
+            print('Błędnie wybrana opcja, spróbuj jeszcze raz') # DRY
 
 
 def show_worker_menu(current_worker):

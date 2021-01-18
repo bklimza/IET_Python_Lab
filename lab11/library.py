@@ -45,12 +45,12 @@ class Worker:
         global library_dict
         if book_id in library_dict.keys():
             for k in library_dict[book_id]:
-                if k == 'is_borrowed':
+                if k == 'is_borrowed':  # czemu nie library_dict[book_id]["is_borrowed"]?
                     if library_dict[book_id][k]:
                         library_dict[book_id][k] = False
                         print('Książka została zwrócona\n')
                     else:
-                        print('Książka nie została wypożyczona\n')
+                        print('Książka nie została wypożyczona\n')  # czy to nie powinien być wyjątek?
         else:
             print('Nie ma takiej książki\n')
 
