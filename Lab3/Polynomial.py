@@ -1,4 +1,4 @@
-from itertools import zip_longest
+from itertools import *
 
 
 class Polynomial:
@@ -12,19 +12,17 @@ class Polynomial:
             return True
 
     def __str__(self):
-        str_result = ''
-        for index in range(len(self.coefficients)):
-            if self.coefficients[index] != 0:
-                str_result += ' + ' + str(self.coefficients[index]) + 'x**' + str(index)
-        return str_result
+        polynomial_list = [str(self.coefficients[index]) + 'x**' + str(index) for index in range(len(self.coefficients))
+                           if
+                           self.coefficients[index] != 0]
+        return ' + '.join(polynomial_list)
 
     def __add__(self, other):
         if isinstance(other, (int, float)):
             self.coefficients[0] += other
             return Polynomial(self.coefficients)
         else:
-            added = [correct_value(c1) + correct_value(c2)
-                     for c1, c2 in zip_longest(self.coefficients, other.coefficients)]
+            added = [c1 + c2 for c1, c2 in zip_longest(self.coefficients, other.coefficients, fillvalue=0)]
             return Polynomial(added)
 
     def __sub__(self, other):
@@ -32,43 +30,34 @@ class Polynomial:
             self.coefficients[0] -= other
             return Polynomial(self.coefficients)
         else:
-            subtracted = [correct_value(c1) - correct_value(c2)
-                          for c1, c2 in zip_longest(self.coefficients, other.coefficients)]
+            subtracted = [c1 - c2 for c1, c2 in zip_longest(self.coefficients, other.coefficients, fillvalue=0)]
             return Polynomial(subtracted)
 
     def __mul__(self, other):
         if isinstance(other, (int, float)):
-            multiplied = [scalar * other for scalar in self.coefficients]
+            multiplied = [coeff * other for coeff in self.coefficients]
             return Polynomial(multiplied)
         else:
-            multiplied = Polynomial([])
-            for index in range(len(other.coefficients)):
-                multiplied += Polynomial(index * [0] + [other.coefficients[index] * coefficient
-                                                        for coefficient in self.coefficients])
-            return multiplied
+            multiplied_len = len(other.coefficients) + len(self.coefficients) - 1
+            multiplied = [0 for _ in range(multiplied_len)]
+            for i in range(len(other.coefficients)):
+                for j in range(len(self.coefficients)):
+                    multiplied[i+j] += other.coefficients[i] * self.coefficients[j]
+            return Polynomial(multiplied)
 
     def __iadd__(self, other):
-        added = self + other
-        return added
+        return self + other
 
     def __isub__(self, other):
-        subtracted = self - other
-        return subtracted
+        return self - other
 
     def __imul__(self, other):
-        multiplied = self * other
-        return multiplied
+        return self * other
 
-    def calculate_value(self, x):
-        calculated = [x ** index * self.coefficients[index] for index in range(len(self.coefficients))]
-        return sum(calculated)
+    def calculate_value(self, value):
+        calculated_list = [(value ** index) * self.coefficients[index] for index in range(len(self.coefficients))]
+        return sum(calculated_list)
 
 
-def correct_value(value):
-    if value is None:
-        return 0
-    else:
-        return value
-
-# defaultdict sprawdziłby się, domyślna wartość mogłaby wynosić 0.
+# defaultdict byłby w porządku, domyślna wartość mogłaby wynosić 0.
 # Dla liczb zespolonych i macierzy również by działało, o ile macierze byłyby kwadratowe i ustalonego rozmiaru.
