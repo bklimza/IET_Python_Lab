@@ -9,7 +9,7 @@ class Individual:
         self.inbox.append((text, sender))
 
     def __str__(self):
-        return self.email + ' ' + self.name + ' ' + self.surname
+        return self.email + ' , ' + self.name + ' , ' + self.surname
 
 
 class Student(Individual):
@@ -20,7 +20,7 @@ class Student(Individual):
         Individual.__init__(self, email, name, surname)
 
     def __str__(self):
-        return Individual.__str__(self) + ' ' + str(self.owned_grades) + ' ' + str(self.id_number)
+        return Individual.__str__(self) + ' , ' + str(self.owned_grades) + ' , ' + str(self.id_number)
 
     def add_new_grade(self, subject, grade: float):
         if (subject not in self.owned_grades.keys()) or (grade < 2.0) or (grade > 5.0):
@@ -34,7 +34,7 @@ class UniversityEmployee(Individual):
         self.room_number = room_number
 
     def __str__(self):
-        return Individual.__str__(self) + ' ' + str(self.room_number)
+        return Individual.__str__(self) + ' , ' + str(self.room_number)
 
 
 class ResearchEmployee(UniversityEmployee):
@@ -43,7 +43,7 @@ class ResearchEmployee(UniversityEmployee):
         self.publications_list = publications_list
 
     def __str__(self):
-        return UniversityEmployee.__str__(self) + ' ' + str(self.publications_list)
+        return UniversityEmployee.__str__(self) + ' , ' + str(self.publications_list)
 
     def add_new_publication(self, title):
         self.publications_list.append(title)
@@ -56,7 +56,7 @@ class TeachingEmployee(UniversityEmployee):
         self.subjects_list = subjects_list
 
     def __str__(self):
-        return UniversityEmployee.__str__(self) + ' ' + self.consultation_time + ' ' + str(self.subjects_list)
+        return UniversityEmployee.__str__(self) + ' , ' + self.consultation_time + ' , ' + str(self.subjects_list)
 
 
 class TeachingAndResearchEmployee(TeachingEmployee, ResearchEmployee):
@@ -65,4 +65,4 @@ class TeachingAndResearchEmployee(TeachingEmployee, ResearchEmployee):
         ResearchEmployee.__init__(self, email, name, surname, room_number, publications_list)
 
     def __str__(self):
-        return ResearchEmployee.__str__(self) + ' ' + str(self.consultation_time) + ' ' + str(self.subjects_list)
+        return ResearchEmployee.__str__(self) + ' , ' + str(self.consultation_time) + ' , ' + str(self.subjects_list)
