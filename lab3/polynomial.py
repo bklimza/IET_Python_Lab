@@ -13,8 +13,7 @@ class Polynomial:
 
     def __str__(self):
         polynomial_list = [str(self.coefficients[index]) + 'x**' + str(index) for index in range(len(self.coefficients))
-                           if
-                           self.coefficients[index] != 0]
+                           if self.coefficients[index] != 0]
         return ' + '.join(polynomial_list)
 
     def __add__(self, other):
