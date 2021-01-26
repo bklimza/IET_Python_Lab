@@ -3,10 +3,10 @@ from itertools import *
 
 class Polynomial:
     def __init__(self, coefficients):
-        self.coefficients = coefficients
+        self.coefficients = coefficients    # coefficients może być modyfikowalne
 
     def __bool__(self):
-        if not any(self.coefficients):
+        if not any(self.coefficients):  # return any(...)
             return False
         else:
             return True
@@ -19,10 +19,10 @@ class Polynomial:
     def __add__(self, other):
         if isinstance(other, (int, float)):
             self.coefficients[0] += other
-            return Polynomial(self.coefficients)
+            return Polynomial(self.coefficients)    # jednocześnie Pan modyfikuje wielomian i zwraca nowy
         else:
             added = [c1 + c2 for c1, c2 in zip_longest(self.coefficients, other.coefficients, fillvalue=0)]
-            return Polynomial(added)
+            return Polynomial(added)    # a tu tylko Pan zwraca
 
     def __sub__(self, other):
         if isinstance(other, (int, float)):

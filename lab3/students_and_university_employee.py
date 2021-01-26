@@ -15,7 +15,7 @@ class Individual:
 class Student(Individual):
     def __init__(self, id_number, email, name, surname, owned_grades=None):
         if owned_grades is None:
-            self.owned_grades = dict()
+            self.owned_grades = dict()  # else?
         self.id_number = id_number
         super().__init__(email, name, surname)
 
